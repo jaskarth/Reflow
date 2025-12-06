@@ -11,7 +11,6 @@
     "perf.MixinImprovedNoise",
     "perf.MixinNoiseChunkGenerator",
     "perf.MixinPerlinNoise",
-    "perf.MixinSurfaceRulesContext",
     "perf.MixinSurfaceSystem",
     "perf.MixinSurfaceSystemBlockColumn",
     "perf.MixinWorldGenRegion"

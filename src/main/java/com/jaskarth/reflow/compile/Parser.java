@@ -223,7 +223,7 @@ public class Parser {
         } else if (func instanceof DensityFunctions.MarkerOrMarked markerImpl) {
             return new UnimplementedNode("MarkerImpl/" + markerImpl, ctx.get(parse(ctx, markerImpl.wrapped())));
         } else if (func instanceof DensityFunctions.Noise(DensityFunction.NoiseHolder noise, double xzScale, double yScale)) {
-            return new NoiseNode2(NoiseNode2.Type.NoShift, getNoiseId(noise).orElseThrow(), xzScale, yScale);
+            return new UnimplementedNode("Noise");
         } else if (func instanceof DensityFunctions.WeirdScaledSampler(
                 DensityFunction input, DensityFunction.NoiseHolder noise, DensityFunctions.WeirdScaledSampler.RarityValueMapper mapper
         ) ) {

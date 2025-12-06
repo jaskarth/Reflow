@@ -11,9 +11,6 @@ import java.util.*;
 // Go check it out, it's very helpful.
 public class GlobalCodeMotion {
     public static void scheduleEarly(CompileUnit unit) {
-        // TODO: before schedule early:
-        //  - eagerly rematerialize constants
-        //  - insert lvar nodes for
         StartNode start = unit.start();
         List<CtrlNode> postorder = new ArrayList<>();
         reversePostorder(start, new HashSet<>(), postorder);

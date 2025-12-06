@@ -5,7 +5,6 @@ import com.jaskarth.reflow.optgraph.block.Block;
 import com.jaskarth.reflow.optgraph.nodes.Node;
 import com.jaskarth.reflow.optgraph.nodes.ctrl.PhiNode;
 import com.jaskarth.reflow.optgraph.nodes.ctrl.RegionNode;
-import com.jaskarth.reflow.optgraph.block.Pack;
 import com.jaskarth.reflow.optgraph.nodes.vars.SpillStoreNode;
 import com.jaskarth.reflow.util.ValidationHelper;
 
@@ -17,40 +16,6 @@ import java.util.*;
 public class DotExporter {
     public static final boolean EXPORT = false;
     private static final Map<String, Integer> NAMES = new HashMap<>();
-
-    private static String toDotLegacyAvoidUsingThis(Node node) {
-        Set<Node> seen = new HashSet<>();
-        Deque<Node> q = new ArrayDeque<>();
-        Map<Node, Integer> ids = new HashMap<>();
-        int i = 0;
-
-        q.add(node);
-
-        while (!q.isEmpty()) {
-            Node n = q.poll();
-
-            if (seen.add(n)) {
-                ids.put(n, i++);
-
-                q.addAll(n.ins());
-            }
-        }
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("digraph G {\n");
-
-        for (Node n : seen) {
-            sb.append("  ").append(ids.get(n)).append(" [label=\"").append(n.describe()).append("\"];\n");
-            for (Node in : n.ins()) {
-                sb.append("  ").append(ids.get(n)).append(" -> ").append(ids.get(in)).append(";\n");
-            }
-        }
-
-        sb.append("}");
-
-        return sb.toString();
-    }
 
     private static String toDot(CompileUnit unit) {
         Set<Node> live = unit.cache().live();
@@ -151,45 +116,6 @@ public class DotExporter {
         }
     }
 
-    private static String toDot(Pack pack) {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("digraph G {\n");
-        sb.append("  rankdir=LR;\n");
-        sb.append("  node [shape=record];\n");
-
-        sb.append("  struct [label=\"");
-        int i = 0;
-        Map<Node, Integer> ids = new HashMap<>();
-        for (Node node : pack.get()) {
-            if (i > 0) {
-                sb.append("|");
-            }
-
-            sb.append("<").append(i).append(">");
-            ids.put(node, i);
-
-            sb.append(node.describe().replaceAll(" ", "\\\\ "));
-
-            i++;
-        }
-
-        sb.append("\"];\n");
-
-        for (Node node : pack.get()) {
-            for (Node input : node.ins()) {
-                if (input == null) {
-                    continue;
-                }
-                sb.append("  struct:").append(ids.get(node)).append(" -> ").append("struct:").append(ids.get(input)).append(";\n");
-            }
-        }
-
-        sb.append("}");
-
-        return sb.toString();
-    }
-
     private static String toDot(Block block) {
         Set<Block> seen = new HashSet<>();
         Deque<Block> q = new ArrayDeque<>();
@@ -250,20 +176,6 @@ public class DotExporter {
         return sb.toString();
     }
 
-    public static void export(String name, Node node) {
-        try {
-            if (!Files.exists(Paths.get("dots"))) {
-                Files.createDirectory(Paths.get("dots"));
-            }
-
-            name += "_" + NAMES.compute(name, (k, v) -> v == null ? 0 : ++v) + ".dot";
-
-            Files.writeString(Paths.get("dots", name), toDotLegacyAvoidUsingThis(node));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static void export(String name, CompileUnit unit) {
         if (!DotExporter.EXPORT) {
             return;
@@ -276,20 +188,6 @@ public class DotExporter {
             name += "_" + NAMES.compute(name, (k, v) -> v == null ? 0 : ++v) + ".dot";
 
             Files.writeString(Paths.get("dots", name), toDot(unit));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void export(String name, Pack pack) {
-        try {
-            if (!Files.exists(Paths.get("dots"))) {
-                Files.createDirectory(Paths.get("dots"));
-            }
-
-            name += "_" + NAMES.compute(name, (k, v) -> v == null ? 0 : ++v) + ".dot";
-
-            Files.writeString(Paths.get("dots", name), toDot(pack));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

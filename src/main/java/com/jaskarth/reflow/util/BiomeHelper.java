@@ -63,12 +63,6 @@ public class BiomeHelper {
             }
         }
 
-        //
-//        if (p.x == 0 && p.z == 0) {
-//            System.out.println(pos + " -> (" + bx + ", " + by + ", " + bz + ")");
-//        }
-        //
-
         if (cx == p.x && cz == p.z) {
             Holder<Biome> res = chunk.getNoiseBiome(bx, by, bz);
             if (cacheIdx >= 0) {
