@@ -9,6 +9,7 @@ public class ArbitraryResource implements Resource {
         this.func = func;
     }
 
+    @CompileCalled
     public double compute(DensityFunction.FunctionContext ctx) {
         return func.compute(ctx);
     }

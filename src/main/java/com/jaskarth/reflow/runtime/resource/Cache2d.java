@@ -17,18 +17,18 @@ public final class Cache2d implements Resource {
     private static final AtomicInteger hits = new AtomicInteger();
     private static final AtomicInteger misses = new AtomicInteger();
 
+    @CompileCalled
     public boolean is(long key) {
-        if (startX == 0 && startZ == 0) {
-//            System.out.println(this.key + " -> " + key);
-        }
         return alive && this.key == key;
     }
 
+    @CompileCalled
     public double get() {
 //        hits.incrementAndGet();
         return value;
     }
 
+    @CompileCalled
     public double put(long key, double value) {
         this.key = key;
         this.value = value;

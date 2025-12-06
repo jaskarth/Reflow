@@ -11,14 +11,17 @@ public class CacheFlatWrapper implements Resource {
         this.wrapped = wrapped;
     }
 
+    @CompileCalled
     public boolean is(long pos) {
         return wrapped.is(pos);
     }
 
+    @CompileCalled
     public double get(long pos) {
         return wrapped.get(pos);
     }
 
+    @CompileCalled
     public double put(long pos, double value) {
         return wrapped.put(pos, value);
     }

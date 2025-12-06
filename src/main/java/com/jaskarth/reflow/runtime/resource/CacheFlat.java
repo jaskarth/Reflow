@@ -26,10 +26,6 @@ public class CacheFlat implements Resource {
         int x = (ChunkPos.getX(pos) >> 2) - this.startX;
         int z = (ChunkPos.getZ(pos) >> 2) - this.startZ;
 
-        if (startX == 0 && startZ == 0) {
-//            System.out.println(">>> " + x + ", " + z);
-        }
-
         return x * SIZE + z;
     }
 
@@ -71,13 +67,7 @@ public class CacheFlat implements Resource {
         int x = (px >> 2) - this.startX;
         int z = (pz >> 2) - this.startZ;
 
-//        if (misses.incrementAndGet() % 1000 == 0) {
-//            System.out.println(startX + ", " + startZ + " -> " + px + ", " + pz + " :: " + x + ", " + z);
-//        }
-
-        if (startX == 0 && startZ == 0) {
-//            System.out.println("??? " + x + ", " + z);
-        }
+        // misses.incrementAndGet()
 
         if (x >= 0 && z >= 0 && x < SIZE && z < SIZE && (px & 3) == 0 && (pz & 3) == 0) {
             cache[x * SIZE + z] = value;
@@ -96,7 +86,6 @@ public class CacheFlat implements Resource {
         alive = true;
         startX = x;
         startZ = z;
-//        System.out.println(x + ", " + z);
     }
 
     static {

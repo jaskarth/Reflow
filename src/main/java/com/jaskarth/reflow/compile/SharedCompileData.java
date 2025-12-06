@@ -10,7 +10,6 @@ import java.util.Map;
 public class SharedCompileData {
     private static final Map<DensityFunction, CacheFlat> MAP = new HashMap<>();
 
-    // TODO: share flatcache instances!
     public CacheFlat getOrMake(DensityFunction func) {
         CacheFlat cache = MAP.get(func);
         if (cache != null) {

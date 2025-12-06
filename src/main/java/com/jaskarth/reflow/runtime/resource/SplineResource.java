@@ -11,6 +11,7 @@ public class SplineResource implements Resource {
         this.spline = spline;
     }
 
+    @CompileCalled
     public double sample(DensityFunction.FunctionContext ctx) {
         return spline.apply(new DensityFunctions.Spline.Point(ctx));
     }

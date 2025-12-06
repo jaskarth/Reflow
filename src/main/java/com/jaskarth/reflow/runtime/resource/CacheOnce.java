@@ -9,6 +9,7 @@ public class CacheOnce implements Resource {
     private double cached = Double.NaN;
     private boolean alive;
 
+    @CompileCalled
     public boolean is(DensityFunction.FunctionContext ctx) {
         if (!alive) {
             return false;
@@ -17,10 +18,12 @@ public class CacheOnce implements Resource {
         return ctx instanceof NoiseChunk nc && nc.interpolationCounter == counter;
     }
 
+    @CompileCalled
     public double get() {
         return cached;
     }
 
+    @CompileCalled
     public double put(DensityFunction.FunctionContext ctx, double v) {
         if (ctx instanceof NoiseChunk nc) {
             counter = nc.interpolationCounter;

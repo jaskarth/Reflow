@@ -6,6 +6,7 @@ import net.minecraft.world.level.levelgen.synth.NormalNoise;
 public class NoiseResource implements Resource {
     private final NormalNoise noise;
 
+    @CompileCalled
     public NoiseResource(NormalNoise noise) {
         this.noise = noise;
     }

@@ -26,19 +26,7 @@ public class MixinNoiseChunk {
     @Shadow @Final
     int firstNoiseZ;
 
-    @Shadow
-    @Final
-    private DensityFunction preliminarySurfaceLevel;
-
     private final InitCtx reflow$initCtx = new InitCtx();
-
-    //@Inject(method = "<init>", at = @At("TAIL"))
-    public void __init(int i, RandomState randomState, int j, int k, NoiseSettings noiseSettings, DensityFunctions.BeardifierOrMarker beardifierOrMarker, NoiseGeneratorSettings noiseGeneratorSettings, Aquifer.FluidPicker fluidPicker, Blender blender, CallbackInfo ci) {
-//        DotExporter.export("ForChunk", Parser.parseFully(this.preliminarySurfaceLevel));
-
-        // Too lazy to breakpoint and kill...
-        System.exit(1);
-    }
 
     @Inject(method = "wrapNew", at = @At("HEAD"))
     private void reflow$setupState(DensityFunction func, CallbackInfoReturnable<DensityFunction> cir) {
