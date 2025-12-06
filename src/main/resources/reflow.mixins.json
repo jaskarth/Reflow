@@ -1,0 +1,28 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.jaskarth.reflow.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BiomeManagerAccessor",
+    "LevelChunkSectionAccessor",
+    "MixinNoiseChunk",
+    "MixinRandomState",
+    "perf.MixinImprovedNoise",
+    "perf.MixinNoiseChunkGenerator",
+    "perf.MixinPerlinNoise",
+    "perf.MixinSurfaceRulesContext",
+    "perf.MixinSurfaceSystem",
+    "perf.MixinSurfaceSystemBlockColumn",
+    "perf.MixinWorldGenRegion"
+  ],
+  "client": [
+    "debug.MixinGameRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

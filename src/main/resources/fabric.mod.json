@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "reflow",
+  "version": "${version}",
+  "name": "Reflow",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "LGPL-3.0",
+  "icon": "assets/reflow/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.jaskarth.reflow.client.ReflowClient"
+    ],
+    "main": [
+      "com.jaskarth.reflow.Reflow"
+    ]
+  },
+  "mixins": [
+    "reflow.mixins.json"
+  ],
+  "accessWidener": "reflow.aw",
+  "depends": {
+    "fabricloader": "*",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
