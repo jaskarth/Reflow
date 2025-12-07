@@ -5,6 +5,8 @@ extendable class net/minecraft/world/level/levelgen/SurfaceRules$Context
 accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context biomeGetter Ljava/util/function/Function;
 mutable field net/minecraft/world/level/levelgen/SurfaceRules$Context biomeGetter Ljava/util/function/Function;
 accessible method net/minecraft/world/level/levelgen/NoiseChunk cachedClimateSampler (Lnet/minecraft/world/level/levelgen/NoiseRouter;Ljava/util/List;)Lnet/minecraft/world/level/biome/Climate$Sampler;
+accessible field net/minecraft/core/Holder$Reference tags Ljava/util/Set;
+
 
 accessible class net/minecraft/world/level/levelgen/DensityFunctions$Mapped
 accessible class net/minecraft/world/level/levelgen/DensityFunctions$Mapped$Type

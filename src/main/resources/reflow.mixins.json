@@ -8,6 +8,8 @@
     "LevelChunkSectionAccessor",
     "MixinNoiseChunk",
     "MixinRandomState",
+    "perf.MixinBlockStateBase",
+    "perf.MixinHolderReference",
     "perf.MixinImprovedNoise",
     "perf.MixinNoiseChunkGenerator",
     "perf.MixinPerlinNoise",
