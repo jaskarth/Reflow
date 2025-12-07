@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class BenchNoise {
     private static final int SIZE = 1024;
 
-//    @Benchmark
+    @Benchmark
     public void testVanilla(Blackhole blackhole, BenchState state) {
         double sum = 0;
         for (int i = 0; i < SIZE; i++) {

@@ -3,7 +3,7 @@ package com.jaskarth.reflow.optgraph.nodes.cache;
 import com.jaskarth.reflow.compile.MethodBuilder;
 import com.jaskarth.reflow.optgraph.nodes.Node;
 import com.jaskarth.reflow.optgraph.type.Type;
-import com.jaskarth.reflow.optgraph.type.TypeD;
+import com.jaskarth.reflow.optgraph.type.TypeDouble;
 import com.jaskarth.reflow.runtime.ref.Refs;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.MethodInsnNode;
@@ -21,7 +21,7 @@ public class FlatCacheGetNode extends Node {
 
     @Override
     public Type type() {
-        return TypeD.bottom();
+        return TypeDouble.bottom();
     }
 
     @Override

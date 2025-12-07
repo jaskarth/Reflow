@@ -2,7 +2,7 @@ package com.jaskarth.reflow.optgraph.nodes;
 
 import com.jaskarth.reflow.compile.MethodBuilder;
 import com.jaskarth.reflow.optgraph.type.Type;
-import com.jaskarth.reflow.optgraph.type.TypeD;
+import com.jaskarth.reflow.optgraph.type.TypeDouble;
 import org.objectweb.asm.tree.LdcInsnNode;
 
 public class ImmDNode extends Node {
@@ -18,7 +18,7 @@ public class ImmDNode extends Node {
 
     @Override
     public Type type() {
-        return TypeD.of(value);
+        return TypeDouble.of(value);
     }
 
     @Override

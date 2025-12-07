@@ -3,7 +3,7 @@ package com.jaskarth.reflow.optgraph.nodes;
 import com.jaskarth.reflow.compile.MethodBuilder;
 import com.jaskarth.reflow.optgraph.hash.NodeCache;
 import com.jaskarth.reflow.optgraph.type.Type;
-import com.jaskarth.reflow.optgraph.type.TypeD;
+import com.jaskarth.reflow.optgraph.type.TypeDouble;
 import net.minecraft.world.level.levelgen.DensityFunctions;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.InsnNode;
@@ -77,26 +77,23 @@ public class BinaryNode extends Node {
 
     @Override
     public Type type() {
-        Type t0 = in(1).type();
-        Type t1 = in(2).type();
+        Type t1 = in(1).type();
+        Type t2 = in(2).type();
 
         // Can't operate on bottom types
-        if (t0 instanceof TypeD d0 && d0.isDBottom()) {
-            return TypeD.bottom();
-        }
-        if (t1 instanceof TypeD d1 && d1.isDBottom()) {
-            return TypeD.bottom();
+        if ((t1 instanceof TypeDouble d1 && d1.isBottom()) || (t2 instanceof TypeDouble d2 && d2.isBottom())) {
+            return TypeDouble.bottom();
         }
 
-        if (t0 instanceof TypeD(double min0, double max0) && t1 instanceof TypeD(double min1, double max1)) {
+        if (t1 instanceof TypeDouble(double min1, double max1) && t2 instanceof TypeDouble(double min2, double max2)) {
             if (type == DensityFunctions.TwoArgumentSimpleFunction.Type.ADD) {
-                return new TypeD(min0 + min1, max0 + max1);
+                return new TypeDouble(min1 + min2, max1 + max2);
             } else if (type == DensityFunctions.TwoArgumentSimpleFunction.Type.MUL) {
-                return new TypeD(min0 * min1, max0 * max1);
+                return new TypeDouble(min1 * min2, max1 * max2);
             }
         }
 
-        return Type.BOTTOM;
+        return TypeDouble.bottom();
     }
 
     @Override

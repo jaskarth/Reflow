@@ -10,18 +10,29 @@ public interface Type {
         return null;
     }
 
-    // FIXME
-    default Type meet(Type t1, Type t2) {
-        return null;
+    default Type meet(Type other) {
+        throw new IllegalStateException("Meet not implemented");
     }
+
+    boolean isBottom();
 
     MachType mach();
 
     record Bottom() implements Type {
 
         @Override
+        public Type meet(Type other) {
+            return BOTTOM;
+        }
+
+        @Override
         public MachType mach() {
             return MachType.BOTTOM;
+        }
+
+        @Override
+        public boolean isBottom() {
+            return true;
         }
     }
 }

@@ -3,7 +3,7 @@ package com.jaskarth.reflow.optgraph.nodes.vars;
 import com.jaskarth.reflow.compile.MethodBuilder;
 import com.jaskarth.reflow.optgraph.nodes.Node;
 import com.jaskarth.reflow.optgraph.type.Type;
-import com.jaskarth.reflow.optgraph.type.TypeI;
+import com.jaskarth.reflow.optgraph.type.TypeInt;
 import com.jaskarth.reflow.runtime.ref.Refs;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.MethodInsnNode;
@@ -17,7 +17,7 @@ public class CtxArgNode extends Node {
 
     @Override
     public Type type() {
-        return TypeI.bottom();
+        return TypeInt.bottom();
     }
 
     @Override

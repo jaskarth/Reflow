@@ -2,8 +2,8 @@ package com.jaskarth.reflow.optgraph.nodes;
 
 import com.jaskarth.reflow.compile.MethodBuilder;
 import com.jaskarth.reflow.optgraph.type.Type;
-import com.jaskarth.reflow.optgraph.type.TypeD;
-import com.jaskarth.reflow.optgraph.type.TypeI;
+import com.jaskarth.reflow.optgraph.type.TypeDouble;
+import com.jaskarth.reflow.optgraph.type.TypeInt;
 import com.jaskarth.reflow.util.ValidationHelper;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.InsnNode;
@@ -26,9 +26,9 @@ public class ConvI2DNode extends Node {
     @Override
     public Type type() {
         Type type = in(1).type();
-        ValidationHelper.assertTrue(type instanceof TypeI, "input should be int");
-        TypeI i = (TypeI) type;
-        return new TypeD(i.min(), i.max());
+        ValidationHelper.assertTrue(type instanceof TypeInt, "input should be int");
+        TypeInt i = (TypeInt) type;
+        return new TypeDouble(i.min(), i.max());
     }
 
     @Override

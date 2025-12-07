@@ -40,9 +40,8 @@ public class PhiNode extends Node {
 
     @Override
     public Type type() {
-        // TODO: implement meet!
         ValidationHelper.assertTrue(in(1).type().mach() == in(2).type().mach(), "types must be same");
-        return in(1).type();
+        return in(1).type().meet(in(2).type());
     }
 
     @Override

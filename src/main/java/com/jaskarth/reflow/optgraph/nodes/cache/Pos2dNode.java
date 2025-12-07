@@ -3,7 +3,7 @@ package com.jaskarth.reflow.optgraph.nodes.cache;
 import com.jaskarth.reflow.compile.MethodBuilder;
 import com.jaskarth.reflow.optgraph.nodes.Node;
 import com.jaskarth.reflow.optgraph.type.Type;
-import com.jaskarth.reflow.optgraph.type.TypeJ;
+import com.jaskarth.reflow.optgraph.type.TypeLong;
 import com.jaskarth.reflow.runtime.ref.Refs;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.MethodInsnNode;
@@ -20,7 +20,7 @@ public class Pos2dNode extends Node {
 
     @Override
     public Type type() {
-        return TypeJ.bottom();
+        return TypeLong.bottom();
     }
 
     @Override

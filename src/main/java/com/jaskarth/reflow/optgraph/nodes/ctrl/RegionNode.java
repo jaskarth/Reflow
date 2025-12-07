@@ -21,7 +21,7 @@ public class RegionNode extends CtrlNode {
                 return null;
             }
         }
-        // should have no phis now, kill the whole if/true/false nodes
+        // should have no phis now, kill the whole if/true/false structure
 
         // find cfg diamond
         if (in(1) instanceof IfProjNode p1 && in(2) instanceof IfProjNode p2) {

@@ -77,7 +77,7 @@ public class Compiler {
         int i = 0;
         for (ResourceLease lease : unit.resources().leases()) {
             String desc = lease.type().ref().asDescriptor();
-            clazz.clazz().fields.add(new FieldNode(Opcodes.ACC_PUBLIC, lease.getName(), desc, null, null));
+            clazz.clazz().fields.add(new FieldNode(Opcodes.ACC_PUBLIC | Opcodes.ACC_FINAL, lease.getName(), desc, null, null));
             resources.add(lease.type().creator().get());
             init.instructions.add(new VarInsnNode(Opcodes.ALOAD, 0));
             init.instructions.add(new VarInsnNode(Opcodes.ALOAD, 1));
@@ -89,7 +89,7 @@ public class Compiler {
 
             init.instructions.add(new FieldInsnNode(Opcodes.PUTFIELD, clazz.name(), lease.getName(), desc));
         }
-        clazz.clazz().fields.add(new FieldNode(Opcodes.ACC_PUBLIC, "holder", "Lcom/jaskarth/reflow/runtime/resource/ResourceHolder;", null, null));
+        clazz.clazz().fields.add(new FieldNode(Opcodes.ACC_PUBLIC | Opcodes.ACC_FINAL, "holder", "Lcom/jaskarth/reflow/runtime/resource/ResourceHolder;", null, null));
         init.instructions.add(new VarInsnNode(Opcodes.ALOAD, 0));
         init.instructions.add(new VarInsnNode(Opcodes.ALOAD, 1));
         init.instructions.add(new FieldInsnNode(Opcodes.PUTFIELD, clazz.name(), "holder", "Lcom/jaskarth/reflow/runtime/resource/ResourceHolder;"));

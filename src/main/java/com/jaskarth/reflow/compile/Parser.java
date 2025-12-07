@@ -8,6 +8,7 @@ import com.jaskarth.reflow.optgraph.nodes.ctrl.*;
 import com.jaskarth.reflow.optgraph.nodes.vars.Arg1Node;
 import com.jaskarth.reflow.optgraph.nodes.vars.CtxArgNode;
 import com.jaskarth.reflow.runtime.resource.*;
+import com.jaskarth.reflow.util.ValidationHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -143,7 +144,15 @@ public class Parser {
                 return phi;
             }
 
-            return new MarkerNode(type, ctx.get(parse(ctx, wrapped)));
+            if (type == DensityFunctions.Marker.Type.Interpolated) {
+                throw new IllegalStateException("Interpolators cannot be compiled");
+            }
+
+            if (type == DensityFunctions.Marker.Type.CacheAllInCell) {
+                throw new IllegalStateException("Cache-all-in-cell cannot be compiled");
+            }
+
+            ValidationHelper.assertTrue(false, "unreachable");
         } else if (func instanceof DensityFunctions.Spline(CubicSpline<DensityFunctions.Spline.Point, DensityFunctions.Spline.Coordinate> spline)) {
             List<Node> c = new ArrayList<>();
             AtomicInteger i = new AtomicInteger();
